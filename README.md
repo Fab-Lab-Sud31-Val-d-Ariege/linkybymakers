@@ -5,7 +5,7 @@ Description
 --
 
 Ce dépôt contient le code et la documentation pour la participation au projet LinkyByMakers.
-Ce code est issu d'une réflexion communne entre les fablabs
+Ce code est issu d'une réflexion commune entre les fablabs
 [Fab Lab Sud31 - Val d'Ariège](https://www.fablab-sud31.fr) et [Info@Lèze](http://infoaleze.chez.com).
 
 Contenu du dépôt

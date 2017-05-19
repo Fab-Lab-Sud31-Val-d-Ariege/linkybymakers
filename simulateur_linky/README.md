@@ -51,7 +51,7 @@ Fichier « config.h » :
   * « Serial1 ». Les trames séries sont émises sur la broche 1 de l'Arduino /
     Genuino Zero.
   * « Serial ». Les trames séries sont émises sur la sortie USB « Programming
-    Port » (marquée « DEBUG » sur la carte.) de l'Arduino / Genuino Zero.
+    Port » (marquée « DEBUG » sur la carte) de l'Arduino / Genuino Zero.
 
 
 Licence

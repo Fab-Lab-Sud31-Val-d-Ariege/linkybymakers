@@ -1,4 +1,4 @@
-/* 
+/*
  * Configuration globale du compteur.
  */
 
@@ -9,7 +9,8 @@
 
 // Port série de sortie à utiliser. Au choix :
 //  - Serial1 : sortie série sur broches 0 (Rx) et 1 (Tx)
-//  - Serial  : sortie série USB, sur port "Programming Port)
+//  - Serial  : sortie série USB, sur port "Programming Port
+//              (marquée « DEBUG » sur la carte)
 #define SORTIE_SERIE Serial
 
 #if MODE_COMPTEUR == 0
