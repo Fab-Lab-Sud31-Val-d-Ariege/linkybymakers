@@ -11,7 +11,7 @@
 //  - Serial1 : sortie série sur broches 0 (Rx) et 1 (Tx)
 //  - Serial  : sortie série USB, sur port "Programming Port
 //              (marquée « DEBUG » sur la carte)
-#define SORTIE_SERIE Serial
+#define SORTIE_SERIE Serial1
 
 #if MODE_COMPTEUR == 0
   // Inclusion des données de test du mode historique
