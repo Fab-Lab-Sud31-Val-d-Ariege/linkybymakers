@@ -21,7 +21,8 @@
 # NOTES
 #
 #******
-#import numpy as np
+import sys
+import os
 import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.backends.backend_pdf import PdfPages
@@ -37,26 +38,22 @@ from matplotlib.backends.backend_pdf import PdfPages
 #
 # SOURCE
 #
-# def Reader(arg) :
-#********
-
-#****f* module/procname [1.0] *
-# NAME
-#
-# FUNCTION
-#
-# INPUTS
-#
-# RESULT
-#
-# SOURCE
-#
 # MAIN ============================
-fn = "data/frames_2017-05-23.csv"
-df = pd.read_csv(fn, sep=",", comment="#")
-df["date"] = pd.to_datetime(df.date)
+if (len(sys.argv) < 2) :
+    print("usage : la-data file.csv")
+    print("Exemple : la-data data/frames_2017-05-23.csv")
+    sys.exit()
 
-with PdfPages(fn + '.pdf') as pdf:
+# reading loop
+ifn = sys.argv[1]
+df = pd.read_csv(ifn, sep=",", comment="#")
+df["date"] = pd.to_datetime(df.date)
+# transform levels in numbers
+df.loc[df.PTEC=="HP..","PTEC"] = 1
+df.loc[df.PTEC=="HC..","PTEC"] = 0
+
+ofn = os.path.splitext(ifn)[0] + ".pdf"
+with PdfPages(ofn) as pdf :
     for ff in df.columns[2:] :
         plt.figure(figsize=(30, 5))
         plt.title(ff)
