@@ -1,4 +1,4 @@
-Retransmetteur Linky vers Bluetooth
+Configurateur BlueSmirf
 ==
 
 Pré-requis
@@ -6,31 +6,29 @@ Pré-requis
 
 * Un Arduino Mini Pro (modèle testé : ATmega168; 3,3V; 8 MHz)
 * Un module Sparkfun BlueSmirf (modèle testé : Gold)
-* Un compteur EDF ou le simulateur Linky
 
 Les branchements sont les suivants :
 * Arduino VCC -> BlueSmirf VCC
 * Arduino GND -> BlueSmirf GND
 * Arduino D2 -> BlueSmirf RX-I
 * Arduino D3 -> BlueSmirf TX-I
-* Arduino D9 -> Sortie TIC du compteur EDF / Simulateur D1
 
 
 Fonctionnement général
 --
 
-Le retransmetteur Linky vers Bluetooth va avoir le fonctionnement suivant :
-* Remplissage d'un buffer (300 octets par défaut) avec les données venant du compteur EDF ou du simulateur Linky
-* Transmission du buffer en Bluetooth via l'émetteur BlueSmirf
-* Mise en veille de 8 secondes
+Le configurateur BlueSmirf va configurer un module éponyme avec les paramètres suivants :
+* Vitesse : 9600 bps
+* Nom : LinkyByMakersBT
+* Clé appairage : 3113
 
 
 Organisation du code
 --
 
-* Fichier « retransmetteur_linky_bt.ino » : code principal du retransmetteur.
+* Fichier « configuration_bluesmirf.ino » : code principal du configurateur.
 
-* Fichier « config.h » : configuration du retransmetteur. Voir plus bas.
+* Fichier « config.h » : configuration du configurateur. Voir plus bas.
 
 Configuration
 --
