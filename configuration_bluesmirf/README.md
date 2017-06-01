@@ -26,7 +26,7 @@ Le configurateur BlueSmirf va configurer un module éponyme avec les paramètres
 Organisation du code
 --
 
-* Fichier « configuration_bluesmirf.ino » : code principal du simulateur.
+* Fichier « configuration_bluesmirf.ino » : code principal du configurateur.
 
 * Fichier « config.h » : configuration du configurateur. Voir plus bas.
 

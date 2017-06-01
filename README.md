@@ -15,6 +15,7 @@ un fichier « README.md » explicatif est présent.
 
 Les répertoires présents sont :
 * configuration_bluesmirf : configuration initiale du module BlueSmirf.
+* retransmetteur_linky_bt : « passe-plat » entre le compteur / simulateur et le module Bluetooth.
 * simulateur_linky : simulateur de compteur Linky.
 
 Ressources
