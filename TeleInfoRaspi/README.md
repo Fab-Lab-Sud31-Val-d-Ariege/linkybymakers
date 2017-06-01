@@ -36,18 +36,18 @@ Supprimer `console=serial0,115200`
 
     dwc_otg.lpm_enable=0 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait
 
-### Paramétrage du port série pour récupérer les trames
+### Paramétrage du port série pour récupérer les trames
 Mode 1200 7E1
 
-#### Shell
+#### En shell
 A faire après chaque boot...
 
 stty -F /dev/ttyAMA0 1200 cs7 evenp -cstopb -igncr -inlcr
 
 Vérifier avec cat /dev/serial0 mais ne pas attendre de voir fidèlement tous les caractères des trames. Manque le mot d'état par exemple.
 
-#### Python3
-Les <cr> <lf> <stx> <etx> sont passés tels quels. Le code suivant a bien fonctionné (trouvé sur internet et adapté à Python3).
+#### En python3
+Les `<cr>` `<lf>` `<stx>` `<etx>` sont passés tels quels. Le code suivant a bien fonctionné (trouvé sur internet et adapté à Python3).
 
 
     import sys
