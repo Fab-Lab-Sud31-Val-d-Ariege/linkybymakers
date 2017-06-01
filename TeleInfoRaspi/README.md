@@ -42,7 +42,7 @@ Mode 1200 7E1
 #### En shell
 A faire après chaque boot...
 
-stty -F /dev/ttyAMA0 1200 cs7 evenp -cstopb -igncr -inlcr
+    stty -F /dev/ttyAMA0 1200 cs7 evenp -cstopb -igncr -inlcr
 
 Vérifier avec cat /dev/serial0 mais ne pas attendre de voir fidèlement tous les caractères des trames. Manque le mot d'état par exemple.
 
