@@ -46,19 +46,21 @@ if (len(sys.argv) < 2) :
 
 # reading loop
 ifn = sys.argv[1]
-df = pd.read_csv(ifn, sep=",", comment="#")
+df = pd.read_csv(ifn, comment="#")
 df["date"] = pd.to_datetime(df.date)
+df.set_index("date", inplace=True, verify_integrity=True)
 # transform levels in numbers
 df.loc[df.PTEC=="HP..","PTEC"] = 1
 df.loc[df.PTEC=="HC..","PTEC"] = 0
 
 ofn = os.path.splitext(ifn)[0] + ".pdf"
 with PdfPages(ofn) as pdf :
-    for ff in df.columns[2:] :
+    for ff in df.columns[1:] :
         plt.figure(figsize=(30, 5))
         plt.title(ff)
-        plt.plot(df.date, df[ff], color='blue', linestyle='-')
-        # plt.savefig("profilW" + testnb + ".png", bbox_inches='tight')
+        # plt.plot(df.date, df[ff], color='blue', linestyle='-')
+        df[ff].plot()
+        # plt.savefig("mlgqlm.png", bbox_inches='tight')
         pdf.savefig()
         plt.show()
 

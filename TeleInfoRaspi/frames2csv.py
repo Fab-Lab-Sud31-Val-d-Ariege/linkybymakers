@@ -148,6 +148,7 @@ for line in ind :
 for line in ind :
     # error, sometimes the checksum is a space...
     ll = line.strip()
+    #print("{0} : {1}".format(count, ll))
     if ( not prog.match(ll)) :
         # not a frame start, should be a frame line
         frame.append(ll)
@@ -156,21 +157,26 @@ for line in ind :
         # process preceding frame unless it is empty
         if (len(frame) == 0) : continue
         csvline, csvheader = processFrame (frame, fields)
-        if (len(csvline) != 0 and len(csvline) == nfields and date != None) :
+        if (len(csvline) == nfields and date != None) :
             if (count == 0) : print("ord,date," + ",".join(csvheader), file=oud)
+            #print("{0},{1},{2}".format(count, date, ",".join(csvline)))
             print("{0},{1},{2}".format(count, date, ",".join(csvline)), file=oud)
 
         # clear for next step
         frame.clear()
         date = validDate(ll, prog2)
-        if (date == None) : continue
-        if (len(csvline) != 0 and len(csvline) == nfields) :
+        #print(date)
+        if (date == None) :
+            continue
+        if (len(csvline) == nfields) :
+            #print("Incrementing count")
             count +=1
 
 # process last frame
-csvline, csvheader = processFrame (frame, fields)
-print("{0},{1},{2}".format(count, date, ",".join(csvline)), file=oud)
-print("{0} frames found".format(count+1))
+if (date != None) :
+    csvline, csvheader = processFrame (frame, fields)
+    print("{0},{1},{2}".format(count, date, ",".join(csvline)), file=oud)
+    print("{0} frames found".format(count+1))
 
 # /MAIN ===========================
 #********
