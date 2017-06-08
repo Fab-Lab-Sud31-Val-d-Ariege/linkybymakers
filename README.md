@@ -18,6 +18,8 @@ Les répertoires présents sont :
 * retransmetteur_linky_bt : « passe-plat » entre le compteur / simulateur et le module Bluetooth.
 * simulateur_linky : simulateur de compteur Linky.
 
+* TeleInfoRaspi : Lecture et traitement des données venant compteur / simulateur, en filaire ou Bluetooth
+
 Ressources
 --
 * [LinkyByMakers](http://linkybymakers.fr)
