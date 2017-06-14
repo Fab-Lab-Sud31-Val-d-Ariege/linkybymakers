@@ -37,7 +37,7 @@ void loop() {
   blueSmirf.begin(BT_BAUD_RATE);
   blueSmirf.println("");
   blueSmirf.println("$ START $");
-  for (int i = 0 ; i <= LK_BUFFER_SIZE ; i++) {
+  for (int i = 0 ; i < LK_BUFFER_SIZE ; i++) {
     blueSmirf.write(buffer[i]);
   }
   blueSmirf.println("");
