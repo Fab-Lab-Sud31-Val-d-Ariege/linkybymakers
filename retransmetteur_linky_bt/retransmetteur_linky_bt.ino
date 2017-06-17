@@ -20,7 +20,7 @@ void loop() {
 
   // On lit une série de donnée venant du compteur (buffer de LK_BUFFER_SIZE octets)
   linky.begin(LK_BAUD_RATE);
-  delay(1000);
+  delay(50);
 
   int i=0;
   while (linky.available() && i < LK_BUFFER_SIZE - 1) {
@@ -35,9 +35,14 @@ void loop() {
 
   // On transmet les données lue du compteur Linky via BT
   blueSmirf.begin(BT_BAUD_RATE);
-  for (int i = 0 ; i <= LK_BUFFER_SIZE ; i++) {
+  blueSmirf.println("");
+  blueSmirf.println("$ START $");
+  for (int i = 0 ; i < LK_BUFFER_SIZE ; i++) {
     blueSmirf.write(buffer[i]);
   }
+  blueSmirf.println("");
+  blueSmirf.println("$ END $");
+  blueSmirf.flush();
   blueSmirf.end();
   
   

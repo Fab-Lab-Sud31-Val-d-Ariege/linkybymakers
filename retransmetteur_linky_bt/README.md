@@ -24,6 +24,16 @@ Le retransmetteur Linky vers Bluetooth va avoir le fonctionnement suivant :
 * Transmission du buffer en Bluetooth via l'émetteur BlueSmirf
 * Mise en veille de 8 secondes
 
+Afin de faciliter la détection des débuts et fin de buffer de retransmission, ce dernier est retransmis de la manière suivante :
+
+    <saut de ligne>
+    $ START $
+    <saut de ligne>
+    [la trame retransmise]
+    <saut de ligne>
+    $ END $
+    <saut de ligne>
+
 
 Organisation du code
 --

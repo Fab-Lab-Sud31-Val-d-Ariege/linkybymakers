@@ -14,9 +14,13 @@ Chaque sous-répertoire du dépôt contient les différents sous-projets. Pour c
 un fichier « README.md » explicatif est présent.
 
 Les répertoires présents sont :
+* communication : la communication autour du projet
+
 * configuration_bluesmirf : configuration initiale du module BlueSmirf.
 * retransmetteur_linky_bt : « passe-plat » entre le compteur / simulateur et le module Bluetooth.
 * simulateur_linky : simulateur de compteur Linky.
+
+* TeleInfoRaspi : Lecture et traitement des données venant compteur / simulateur, en filaire ou Bluetooth
 
 Ressources
 --

@@ -8,6 +8,9 @@ void setup() {
     // La sortie téléinfo du compteur Linky fonctionne à 9600 bauds en mode standard
     SORTIE_SERIE.begin(9600);
   }
+
+  // Initialise le générateur pseudo-aléatoire
+  randomSeed(analogRead(0));
 }
 
 void loop() {
@@ -64,7 +67,8 @@ void genereTrame() {
     // Fin de trame
     SORTIE_SERIE.write(0x03);
 
-    delay (30);
+    // Le delai entre chaque trame est compris entre 16 et 33 ms
+    delay (random(16,33));
   }
 }
 #endif
