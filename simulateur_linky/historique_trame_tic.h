@@ -22,8 +22,8 @@
 const char adresseCompteur[]       = "\nADCO 030422000048 .\r"; // Adresse du compteur
 const char optionTarif[]           = "\nOPTARIF HC.. <\r";      // Option tarifaire choisie
 const char intensiteContrat[]      = "\nISOUSC 30 9\r";         // Intensité souscrite
-const char indexHC[]               = "\nHCHC ";               // Index heures creuses
-const char indexHP[]               = "\nHCHP ";               // Index heures pleines
+const char indexHC[]               = "HCHC ";                   // Index heures creuses
+const char indexHP[]               = "HCHP ";                   // Index heures pleines
 const char periodeTarifEnCoursHC[] = "\nPTEC HC.. S\r";         // Période tarifaire en cours (cas heures creuses)
 const char periodeTarifEnCoursHP[] = "\nPTEC HP.. S\r";         // Période tarifaire en cours (cas heures pleines)
 const char intensiteInstantanee[]  = "\nIINST 011 Y\r";         // Intensité instantanée

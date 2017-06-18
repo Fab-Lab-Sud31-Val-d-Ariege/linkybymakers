@@ -35,15 +35,25 @@ void genereTrame() {
     SORTIE_SERIE.print(intensiteContrat);
 
     // Index heures creuses
+    SORTIE_SERIE.print('\n');
     SORTIE_SERIE.print(indexHC);
     SORTIE_SERIE.print(hcIndexes[indexNumber]);
-    SORTIE_SERIE.print(" 2"); // Fausse somme de contrôle
+    SORTIE_SERIE.print(" ");
+    char data[15] = "";
+    strcat(data, indexHC);
+    strcat(data, hcIndexes[indexNumber]);
+    SORTIE_SERIE.write(checksumTic(data));
     SORTIE_SERIE.print('\r');
 
     // Index heures pleines
+    SORTIE_SERIE.print('\n');
     SORTIE_SERIE.print(indexHP);
     SORTIE_SERIE.print(hpIndexes[indexNumber]);
-    SORTIE_SERIE.print(" 9"); // Fausse somme de contrôle
+    SORTIE_SERIE.print(" ");
+    strcpy(data, "");
+    strcat(data, indexHP);
+    strcat(data, hpIndexes[indexNumber]);
+    SORTIE_SERIE.write(checksumTic(data));
     SORTIE_SERIE.print('\r');
 
     // Période tarifaire en cours
@@ -81,3 +91,16 @@ void genereTrame() {
   delay (100);
 }
 #endif
+
+// Calcul du checksum d'une trame TIC
+byte checksumTic(char data[]) {
+  int sum = 0;
+  for (byte i = 0 ; i < strlen(data) ; i++) {
+    sum += data[i];
+  }
+  sum = sum & byte(0x3F);
+  sum += byte(0x20);
+
+  return byte(sum);
+}
+
