@@ -174,4 +174,4 @@ Des salves de données venant de l'émetteur BT doivent apparaitre toutes les 8 
 * collectandstoreframes.py : écoute un compteur et stocke les octets reçus dans un fichier par jour.
 * frames2csv.py : convertis un des fichiers précédents en ne coservant que les champs prcisés sur la lgne de commande.
 * la-data.py : relis un fichier csv et trace les valeurs de colonnes dans un pdf.
-* collectandstorefrombt.py : relis un fichier (data/simulateur.dat), test pour la capture des trames via Bluetooth.
+* collectandstorefrombt.py : relis un fichier (data/simulateur_raw.dat), test pour la capture des trames via Bluetooth.

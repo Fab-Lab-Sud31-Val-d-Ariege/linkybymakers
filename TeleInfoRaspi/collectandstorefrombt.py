@@ -19,7 +19,7 @@
 # MODIFICATION HISTORY
 #
 # NOTES
-# 01iIlLoO
+#
 #
 #******
 # import serial
@@ -45,10 +45,10 @@ def processLine (line) :
 
     data = toks[0] + ' ' + toks[1]
     ck = chksum(data)
-    print(">{0}< >{1}< >{2}<".format(data, str(ck.to_bytes(1, "big"), "ascii"), toks[2]))
+    # print(">{0}< >{1}< >{2}<".format(data, str(ck.to_bytes(1, "big"), "ascii"), toks[2]))
     if ( ord(toks[2]) != ck ) : return(list())
 
-    return(toks[0:2])
+    return(toks[0:3])
 
 #****f* module/procname [1.0] *
 # NAME
@@ -62,20 +62,21 @@ def processLine (line) :
 # SOURCE
 #
 # MAIN ============================
-# serial port for reading data
-#ins = serial.Serial(port="/dev/ttyAMA0", baudrate=1200, bytesize=serial.SEVENBITS, parity=serial.PARITY_EVEN, stopbits=serial.STOPBITS_ONE)
+# serial port for reading data on Bluetooth port
+#ins = serial.Serial(port="/dev/rfcomm0", baudrate=9600)
 
 # open file from simulator
-ins = open("data/simulateur.dat", "rb")
+ins = open("data/simulateur_raw.dat", "rb")
 
 # Datation
 start = dt.today()
 
 # create output file name
 fn = "frames_" + start.strftime("%Y-%m-%d") + ".dat"
-print(fn)
-oud = open(fn, mode='ab')
+print("storing into {0}".format(fn))
+oud = open(fn, mode='a')
 
+ans = dict()
 # main loop
 for ll in ins :
     # got one line
@@ -86,11 +87,26 @@ for ll in ins :
         ll = ll.decode("ascii").strip()
     except UnicodeDecodeError :
         continue
-    print(">{0}<".format(ll))
-    toks = processLine(ll)
-    print(toks)
-    # store in dictionnary
 
+    if ( ll == "$ START $") :
+        now = dt.today()
+        continue
+
+    #print(">{0}<".format(ll))
+    toks = processLine(ll)
+    # print(toks)
+    # store in dictionnary
+    if ( len(toks) == 3 ) :
+        ans[toks[0]] = (toks[1], toks[2])
+
+    # if the line is "$ END $" we store the frame
+    if ( ll == "$ END $") :
+        # print(ans)
+        print("{0}".format(now), file=oud)
+        for kk in ans :
+            print("{0} {1} {2}".format(kk, ans[kk][0], ans[kk][1]), file=oud)
+            # clean the dictionnary for next round
+            ans[kk]=("vide", "?")
 
     ## check date change
     #if (now.day != start.day) :
@@ -99,6 +115,7 @@ for ll in ins :
         #fn = "frames_" + start.strftime("%Y-%m-%d") + ".dat"
         #print(fn)
         #oud = open(fn, mode='ab')
+
 
 # /MAIN ===========================
 #********

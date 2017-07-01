@@ -2,6 +2,9 @@
 # Edit this file to define constants and custom build targets.
 # target for making everything
 
+.PHONY: all
+all : convert draw store
+
 %.csv: %.dat
 	python3 frames2csv.py $^ PTEC HCHC HCHP TENSION PAPP
 
@@ -20,3 +23,7 @@ draw :
 		python3 la-data.py $$ii ; \
 	done
 
+.PHONY : store
+store:
+	mv *.dat DAT/
+	mv *.pdf PDF/
