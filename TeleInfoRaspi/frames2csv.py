@@ -25,6 +25,9 @@
 # Select while reading ?
 # Store as CSV
 #
+# PAPP : resolution 10W above 100W. Power under 100W are reported as zero
+# so all zero fields were missing. Changed to have them 0.
+#
 #******
 import sys
 import os
@@ -83,7 +86,9 @@ def processFrame (frame, fields) :
 
         # check the field
         if (select and not (toks[0] in fields) ) : continue
-        csvline.append(toks[1].lstrip('0'))
+        val = toks[1].lstrip('0')
+        if (len(val) == 0 ) : val = "0"
+        csvline.append(val)
         csvheader.append(toks[0])
 
     return(csvline, csvheader)
@@ -160,7 +165,13 @@ for line in ind :
         if (len(csvline) == nfields and date != None) :
             if (count == 0) : print("ord,date," + ",".join(csvheader), file=oud)
             #print("{0},{1},{2}".format(count, date, ",".join(csvline)))
-            print("{0},{1},{2}".format(count, date, ",".join(csvline)), file=oud)
+            try :
+                print("{0},{1},{2}".format(count, date, ",".join(csvline)), file=oud)
+            except TypeError :
+                print(count)
+                print(date)
+                print(csvline)
+
 
         # clear for next step
         frame.clear()

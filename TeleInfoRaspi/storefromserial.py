@@ -19,11 +19,7 @@
 # MODIFICATION HISTORY
 #
 # NOTES
-# Keep only useful fields
-# Check number of fields as well as checksum
-# Bad checksum became NA
-# Select while reading ?
-# Store as CSV
+# 01iIlLoO
 #
 #******
 import serial
@@ -52,7 +48,7 @@ while ins.read(1) != b'\x02' :
 start = dt.today()
 # create file name
 fn = "frames_" + start.strftime("%Y-%m-%d") + ".dat"
-print(fn)
+print("storing into {0}".format(fn))
 oud = open(fn, mode='ab')
 
 # main loop

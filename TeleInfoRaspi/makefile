@@ -25,5 +25,17 @@ draw :
 
 .PHONY : store
 store:
-	mv *.dat DAT/
-	mv *.pdf PDF/
+	mv data/*.dat data/DAT/
+	mv data/*.pdf data/PDF/
+
+.PHONY : convertNew
+convertNew :
+	for ii in data/*.dat; do \
+		BN=$$(basename $$ii .dat); \
+		echo $$BN; \
+		python3 frames2csv.py $$ii PTEC HCHC HCHP TENSION PAPP; \
+		python3 la-data.py data/$$BN.csv True; \
+		mv data/$$BN.pdf data/PDF/ ; \
+		gzip $$ii ; \
+		mv $${ii}.gz data/DAT/ ; \
+	done

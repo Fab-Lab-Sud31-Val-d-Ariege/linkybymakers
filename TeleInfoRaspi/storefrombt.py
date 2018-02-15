@@ -66,7 +66,7 @@ def processLine (line) :
 #ins = serial.Serial(port="/dev/rfcomm0", baudrate=9600)
 
 # open file from simulator
-ins = open("data/simulateur_raw.dat", "rb")
+ins = open("data/Debug/simulateur_raw.dat", "rb")
 
 # Datation
 start = dt.today()

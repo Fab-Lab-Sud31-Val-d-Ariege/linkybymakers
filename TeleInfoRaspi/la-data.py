@@ -40,7 +40,9 @@ from matplotlib.backends.backend_pdf import PdfPages
 #
 # MAIN ============================
 if (len(sys.argv) < 2) :
-    print("usage : la-data file.csv")
+    print("usage : la-data file.csv True/False")
+    print("True/False to show or not the PAPP curves,")
+    print("Always store the pdf.")
     print("Exemple : la-data data/frames_2017-05-23.csv")
     sys.exit()
 
@@ -53,6 +55,12 @@ df.set_index("date", inplace=True, verify_integrity=True)
 df.loc[df.PTEC=="HP..","PTEC"] = 1
 df.loc[df.PTEC=="HC..","PTEC"] = 0
 
+# in no arguments, show = True
+show = True
+if (len(sys.argv) == 3) :
+    if (sys.argv[2] != "True") :
+        show = False
+
 ofn = os.path.splitext(ifn)[0] + ".pdf"
 with PdfPages(ofn) as pdf :
     for ff in df.columns[1:] :
@@ -62,7 +70,11 @@ with PdfPages(ofn) as pdf :
         df[ff].plot()
         # plt.savefig("mlgqlm.png", bbox_inches='tight')
         pdf.savefig()
-        plt.show()
+        print("drawing {0}".format(ff))
+        if ( show and (ff == "PAPP") ) :
+            plt.show()
+        else :
+            plt.close()
 
 # /MAIN ===========================
 #********
